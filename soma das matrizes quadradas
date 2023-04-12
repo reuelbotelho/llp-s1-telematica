@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(){
+    int tamanho = 3;
+    int l, c, A[tamanho][tamanho], B[tamanho][tamanho], C[tamanho][tamanho];
+
+    srand(time(NULL));
+
+    for(l = 0; l < tamanho; l++){
+        for(c = 0; c < tamanho; c++){
+            A[l][c] = rand() % 100;
+            B[l][c] = rand() % 100;
+        }
+    }
+
+    for(l = 0; l < tamanho; l++){
+        for(c = 0; c < tamanho; c++){
+            C[l][c] = A[l][c] + B[l][c];
+        }
+    }
+
+    printf("\nMatriz A\n");
+    for(l = 0; l < tamanho; l++){
+        for(c = 0; c < tamanho; c++)
+            printf("%3d ", A[l][c]);
+        printf("\n");
+    }
+
+    printf("\nMatriz B\n");
+    for(l = 0; l < tamanho; l++){
+        for(c = 0; c < tamanho; c++)
+            printf("%3d ", B[l][c]);
+        printf("\n");
+    }
+
+    printf("\nMatriz C\n");
+    for(l = 0; l < tamanho; l++){
+        for(c = 0; c < tamanho; c++)
+            printf("%3d ", C[l][c]);
+        printf("\n");
+    }
+
+    return 0;
+}
