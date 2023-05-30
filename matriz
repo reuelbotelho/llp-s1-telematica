@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct funcionarios{
+	char nome[200];
+	unsigned int idade;
+	float salario;
+};
+
+int main (){
+	
+	struct funcionarios dados[3];
+	int a;
+	
+	for(a=0; a<3; a++){
+		
+		printf("--------------- Dados da pessoa %d ---------------\n", a+1 );
+		printf("Digte o nome:\n");
+		scanf("%100[^\n]s", dados[a].nome);
+		getchar();
+		
+		printf("Digite a idade:\n");
+		scanf("%d", &dados[a].idade);
+		fflush(stdin);
+		
+		printf("Digite o salário:\n");
+		scanf("%f", &dados[a].salario);
+		fflush(stdin);
+	}
+	system("cls");
+	
+	
+	FILE *arquivo;
+	arquivo =fopen("Funcionarios_da_empresa.txt", "w");
+
+	 if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    } else{
+	for(a=0; a<3;a++){
+		
+		printf("--------------- Pessoa %d ---------------\n", a+ 1);
+        printf("Nome: %s\n", dados[a].nome);
+        printf("Idade: %d anos.\n", dados[a].idade);
+        printf("Salario: %.2f\n", dados[a].salario);
+        
+		fprintf(arquivo, "--------------- Pessoa %d ---------------\n", a+1);
+		fprintf(arquivo,"Nome: %s\n", dados[a].nome);
+		fprintf(arquivo,"Idade: %d anos.\n", dados[a].idade);
+		fprintf(arquivo,"Salario: %.2f\n", dados[a].salario);
+		
+	}
+	
+	fclose(arquivo);
+	return 0;
+	}
+	
+	
+}
