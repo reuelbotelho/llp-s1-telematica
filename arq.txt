@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+    FILE *arquivo;
+    char caractere;
+
+    // Abre o arquivo para escrita
+    arquivo = fopen("arq.txt", "w");
+
+    // Verifica se o arquivo foi aberto corretamente
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        return 1;
+    }
+
+    // Solicita ao usuário para inserir caracteres até digitar "0"
+    printf("Digite os caracteres que deseja gravar (0 para sair):\n");
+    while (1) {
+        scanf(" %c", &caractere);
+
+        // Verifica se o usuário digitou "0" para sair
+        if (caractere == '0') {
+            break;
+        }
+
+        // Grava o caractere no arquivo
+        fputc(caractere, arquivo);
+    }
+
+    // Fecha o arquivo
+    fclose(arquivo);
+
+    printf("Arquivo gravado com sucesso!\n");
+
+    return 0;
+}
