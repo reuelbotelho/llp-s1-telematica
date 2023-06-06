@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    FILE *entrada, *saida;
+    char nomeArquivo[100], ch;
+
+    printf("Digite o nome do arquivo de entrada: ");
+    scanf("%s", nomeArquivo);
+
+    entrada = fopen(nomeArquivo, "r");
+    if (entrada == NULL) {
+        printf("Erro ao abrir o arquivo de entrada.\n");
+        return 1;
+    }
+
+    saida = fopen("saida.txt", "w");
+    if (saida == NULL) {
+        printf("Erro ao criar o arquivo de saída.\n");
+        return 1;
+    }
+
+    while ((ch = fgetc(entrada)) != EOF) {
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+            ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+            fputc('*', saida);
+        } else {
+            fputc(ch, saida);
+        }
+    }
+
+    printf("Arquivo de saída criado com sucesso.\n");
+
+    fclose(entrada);
+    fclose(saida);
+
+    return 0;
+}
