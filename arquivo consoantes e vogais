@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main() {
+    char nomeArquivo[100];
+    FILE *arquivo;
+    char caractere;
+    int vogais = 0, consoantes = 0;
+
+    printf("Digite o nome do arquivo de texto: ");
+    scanf("%s", nomeArquivo);
+
+    arquivo = fopen(nomeArquivo, "r");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
+
+    while ((caractere = fgetc(arquivo)) != EOF) {
+        caractere = tolower(caractere);
+        if (caractere >= 'a' && caractere <= 'z') {
+            if (caractere == 'a' || caractere == 'e' || caractere == 'i' || caractere == 'o' || caractere == 'u')
+                vogais++;
+            else
+                consoantes++;
+        }
+    }
+
+    fclose(arquivo);
+
+    printf("O arquivo contém %d vogais e %d consoantes.\n", vogais, consoantes);
+
+    return 0;
+}
