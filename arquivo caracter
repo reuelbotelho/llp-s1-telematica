@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+    FILE *arquivo;
+    char nomeArquivo[100], caracter;
+    int contador = 0;
+
+    printf("Digite o nome do arquivo: ");
+    scanf("%s", nomeArquivo);
+
+    printf("Digite o caractere a ser contado: ");
+    scanf(" %c", &caracter);
+
+    arquivo = fopen(nomeArquivo, "r");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
+
+    char c;
+    while ((c = fgetc(arquivo)) != EOF) {
+        if (c == caracter) {
+            contador++;
+        }
+    }
+
+    printf("O caractere '%c' ocorre %d vezes no arquivo.\n", caracter, contador);
+
+    fclose(arquivo);
+
+    return 0;
+}
